@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
       <body>
         <section className="background-white font-poppins">
           <Navbar/>
-          <div className="mt-20 pt-2 p-4">
+          {/* <div className="mt-20 pt-2 p-4"> */}
             {children}
-          </div>
+          {/* </div> */}
         </section>
       </body>
     </html>
