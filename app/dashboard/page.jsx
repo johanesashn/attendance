@@ -6,26 +6,28 @@ import { useEffect } from "react"
 const page = () => {
     const router = useRouter()
 
-    // useEffect(() => {
-    //     if (!sessionStorage?.user){
-    //         return router.push('/')
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (!sessionStorage?.user){
+            return router.push('/')
+        }
+    }, [])
 
     useEffect(() => {
         if (navigator.geolocation) {
             const watchId = navigator.geolocation.watchPosition(
                 (position) => {
-                    const { latitude, longitude } = position.coords;
+                    const { latitude, longitude, altitude } = position.coords;
                     // setLocation({ lat: latitude, lng: longitude });
-                    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                    console.log(`Latitude: ${latitude}, Longitude: ${longitude}, altitude: ${altitude}`);
+                    console.log(position.coords)
                 },
                 (err) => {
-                    setError(err.message);
+                    // setError(err.message);
+                    console.log(err)
                 },
                 {
                     enableHighAccuracy: true, // Request high-accuracy location
-                    timeout: 1000, // Set a timeout (in milliseconds)
+                    timeout: 15000, // Set a timeout (in milliseconds)
                     maximumAge: 0 // Do not use cached position
                 }
             );
